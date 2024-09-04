@@ -32,11 +32,14 @@ public class WeatherActitvity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_weather_acitvity);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-//        if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.main, new ForecastFragment())
-//                    .commit();
-//        }
+
+        // Create a new Fragment to be placed in the activity l
+        ForecastFragment firstFragment = new ForecastFragment();
+        // Add the fragment to the 'container' FrameLayout
+
+        getSupportFragmentManager().beginTransaction().add(
+                R.id.main, firstFragment).commit();
+
     }
 
 
