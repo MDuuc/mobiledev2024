@@ -1,5 +1,6 @@
 package vn.edu.usth.usthweather;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -64,7 +65,8 @@ public class ForecastFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forecast, container, false);
 
         // Set background color programmatically
-        view.setBackgroundColor(0x2020FF00);
+//        view.setBackgroundColor(0x2020FF00);
+        view.setBackgroundColor(Color.parseColor("#fafafa"));
 
         return view;
     }
