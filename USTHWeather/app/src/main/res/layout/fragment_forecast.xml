@@ -5,69 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".ForecastFragment">
 
-
-    <!-- TODO: Update blank fragment layout -->
-
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:paddingBottom="16dp"-->
-<!--        android:text="Thursday"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textStyle="bold" />-->
-
-<!--    <ImageView-->
-<!--        android:layout_width="281dp"-->
-<!--        android:layout_height="239dp"-->
-<!--        android:layout_gravity="top|center_horizontal"-->
-<!--        android:paddingTop="24dp"-->
-<!--        android:src="@drawable/storm" />-->
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-
         <LinearLayout
-            android:background="#d4e6f1"
-            android:id="@+id/show_big_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingBottom="16dp"
-                android:text="24C-32C \nCloudy"
-                android:gravity="center_vertical"
-                android:paddingLeft="14dp"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_width="280dp"
-                android:layout_height="230dp"
-                android:layout_gravity="center_vertical"
-                android:paddingTop="24dp"
-                android:src="@drawable/storm" />
-        </LinearLayout>
-x
-        <LinearLayout
-            android:layout_below="@id/show_big_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="8dp">
 
-            <!-- Row 1 -->
-
-            <!-- Row 2 -->
-
-            <!-- Row 2 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="63dp"

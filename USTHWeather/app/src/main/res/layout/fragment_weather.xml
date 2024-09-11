@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeatherFragment">
+
+    <LinearLayout
+        android:background="#d4e6f1"
+        android:id="@+id/show_big_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingBottom="16dp"
+            android:text="24C-32C \nCloudy"
+            android:gravity="center_vertical"
+            android:paddingLeft="14dp"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="230dp"
+            android:layout_gravity="center_vertical"
+            android:paddingTop="24dp"
+            android:src="@drawable/storm" />
+    </LinearLayout>
+
+</FrameLayout>
