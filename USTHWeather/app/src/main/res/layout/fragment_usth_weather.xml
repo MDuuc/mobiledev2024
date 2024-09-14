@@ -7,7 +7,7 @@
     tools:context=".home.UsthWeather">
 
     <LinearLayout
-        android:background="#d4e6f1"
+        android:background="@color/blue_light"
         android:id="@+id/container_weather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:paddingBottom="16dp"
-            android:text="24C-32C \nCloudy"
+            android:text="@string/weather_cloudy"
             android:gravity="center_vertical"
             android:paddingLeft="14dp"
             android:textSize="20dp"

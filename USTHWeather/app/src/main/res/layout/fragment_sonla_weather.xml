@@ -7,7 +7,7 @@
     tools:context=".home.SonlaWeather">
 
     <LinearLayout
-        android:background="#d4e6f1"
+        android:background="@color/blue_light"
         android:id="@+id/container_weather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

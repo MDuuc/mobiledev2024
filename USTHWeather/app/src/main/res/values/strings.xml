@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">USTH Weather</string>
-    <string name="title_activity_weather_acitvity">WeatherAcitvity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_weather_acitvity" translatable="false">WeatherAcitvity</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_usth" >USTH</string>
+    <string name="title_hanoi" >HaNoi</string>
+    <string name="title_sonla">SonLa</string>
+    <string name="weather_cloudy">24C-32C \nCloudy</string>
+
 </resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">USTH Weather</string>
+    <string name="title_usth">Ú Òa</string>
+    <string name="title_hanoi">Hà Nội</string>
+    <string name="title_sonla">Sơn La</string>
+    <string name="weather_cloudy">24C-32C \\n Âm U</string>
+</resources>
