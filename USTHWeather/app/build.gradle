@@ -4,6 +4,7 @@ plugins {
 
 android {
     namespace 'vn.edu.usth.usthweather'
+//    compileSdk 34
     compileSdk 34
 
     defaultConfig {

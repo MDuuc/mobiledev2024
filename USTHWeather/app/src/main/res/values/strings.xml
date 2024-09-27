@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">USTH Weather</string>
-    <string name="title_activity_weather_acitvity" translatable="false">WeatherAcitvity</string>
+    <string name="title_activity_weather_acitvity">USTH WEATHER</string>
     <string name="title_home" translatable="false">Home</string>
     <string name="title_dashboard" translatable="false">Dashboard</string>
     <string name="title_notifications" translatable="false">Notifications</string>

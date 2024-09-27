@@ -1,22 +1,24 @@
 package vn.edu.usth.usthweather;
 
+import android.content.pm.PackageManager;
+import android.media.AudioAttributes;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager2.widget.ViewPager2;
 
 import vn.edu.usth.usthweather.databinding.ActivityWeatherAcitvityBinding;
 import vn.edu.usth.usthweather.home.HomeAdapter;
 
 public class WeatherActitvity extends AppCompatActivity {
+    MediaPlayer mediaPlayer;
 
     private ActivityWeatherAcitvityBinding binding;
     TabLayout tabLayout;
@@ -25,12 +27,15 @@ public class WeatherActitvity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mediaPlayer= MediaPlayer.create(this, R.raw.weather);
+        mediaPlayer.start();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_acitvity);
 
-        tabLayout=findViewById(R.id.tab_layout);
-        viewPager2=findViewById(R.id.view_pager);
-        homeAdapter= new HomeAdapter(this);
+        tabLayout = findViewById(R.id.tab_layout);
+        viewPager2 = findViewById(R.id.view_pager);
+        homeAdapter = new HomeAdapter(this);
         viewPager2.setAdapter(homeAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -58,6 +63,12 @@ public class WeatherActitvity extends AppCompatActivity {
             }
         });
 
+    }
+
+}
+
+
+
 
 //        binding = ActivityWeatherAcitvityBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
@@ -83,7 +94,7 @@ public class WeatherActitvity extends AppCompatActivity {
 //        getSupportFragmentManager().beginTransaction().add(
 //                R.id.container_forecast, forecastFragment).commit();
 
-    }
+
 
 
 //    public WeatherActitvity() {
@@ -111,4 +122,3 @@ public class WeatherActitvity extends AppCompatActivity {
 //        Log.i("Weather","Destroy here");
 //    }
 
-}
