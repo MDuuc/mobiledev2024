@@ -1,25 +1,23 @@
 package vn.edu.usth.usthweather;
 
-import android.content.pm.PackageManager;
-import android.media.AudioAttributes;
+import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 
 import vn.edu.usth.usthweather.databinding.ActivityWeatherAcitvityBinding;
 import vn.edu.usth.usthweather.home.HomeAdapter;
 
 public class WeatherActitvity extends AppCompatActivity {
-    MediaPlayer mediaPlayer;
-
     private ActivityWeatherAcitvityBinding binding;
     TabLayout tabLayout;
     ViewPager2 viewPager2;
@@ -27,11 +25,33 @@ public class WeatherActitvity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mediaPlayer= MediaPlayer.create(this, R.raw.weather);
-        mediaPlayer.start();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_acitvity);
+
+        //play music
+        MediaPlayer mediaPlayer= MediaPlayer.create(this, R.raw.weather);
+        mediaPlayer.start();
+
+        //add toolbar
+        Toolbar toolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolbar);
+
+        ImageView refreshButton = toolbar.findViewById(R.id.refreshButton);
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 CharSequence text = "Refreshing!";
+                 int duration = Toast.LENGTH_SHORT;
+
+                 Toast toast = Toast.makeText(toolbar.getContext(), text, duration);
+                 toast.show();
+             }
+         }
+
+        );
+
+
+
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
@@ -63,7 +83,21 @@ public class WeatherActitvity extends AppCompatActivity {
             }
         });
 
+        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
+        return true;
+
+
+
+
+
     }
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        getMenuInflater().inflate(R.layout.toolbar, menu);
+//        return true;
+//    }
 
 }
 
