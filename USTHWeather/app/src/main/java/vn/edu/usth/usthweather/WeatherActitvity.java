@@ -3,6 +3,9 @@ package vn.edu.usth.usthweather;
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,37 +25,79 @@ public class WeatherActitvity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager2 viewPager2;
     HomeAdapter homeAdapter;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_acitvity);
 
-        //play music
-        MediaPlayer mediaPlayer= MediaPlayer.create(this, R.raw.weather);
+        // Initialize handler in the main thread
+        handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(Message msg) {
+                // Handle the message from worker thread
+                String content = msg.getData().getString("weather_data");
+                Toast.makeText(WeatherActitvity.this, content, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        // Play music
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.weather);
         mediaPlayer.start();
 
-        //add toolbar
+        // Add toolbar
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
+        // Set up refresh button with thread handling
         ImageView refreshButton = toolbar.findViewById(R.id.refreshButton);
         refreshButton.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 CharSequence text = "Refreshing!";
-                 int duration = Toast.LENGTH_SHORT;
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(WeatherActitvity.this, "Starting refresh...", Toast.LENGTH_SHORT).show();
+                performRefresh();
+            }
+        });
 
-                 Toast toast = Toast.makeText(toolbar.getContext(), text, duration);
-                 toast.show();
-             }
-         }
+        // Tab Layout setup
+        setupTabs();
+    }
 
-        );
+    private void performRefresh() {
+        Thread refreshThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Simulate network delay
+                    Thread.sleep(2000);
 
+                    // Simulate getting weather data
+                    Bundle weatherData = new Bundle();
+                    weatherData.putString("weather_data", "Weather data refreshed successfully!");
 
+                    // Send message back to main thread
+                    Message message = new Message();
+                    message.setData(weatherData);
+                    handler.sendMessage(message);
 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
 
+                    // Send error message if refresh fails
+                    Bundle errorData = new Bundle();
+                    errorData.putString("weather_data", "Failed to refresh weather data");
+                    Message errorMessage = new Message();
+                    errorMessage.setData(errorData);
+                    handler.sendMessage(errorMessage);
+                }
+            }
+        });
+
+        refreshThread.start();
+    }
+
+    private void setupTabs() {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
         homeAdapter = new HomeAdapter(this);
@@ -65,14 +110,10 @@ public class WeatherActitvity extends AppCompatActivity {
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabUnselected(TabLayout.Tab tab) {}
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
+            public void onTabReselected(TabLayout.Tab tab) {}
         });
 
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -82,77 +123,16 @@ public class WeatherActitvity extends AppCompatActivity {
                 tabLayout.getTabAt(position).select();
             }
         });
+    }
 
-        }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
         return true;
-
-
-
-
-
     }
-//    public boolean onCreateOptionsMenu(Menu menu){
-//        getMenuInflater().inflate(R.layout.toolbar, menu);
-//        return true;
-//    }
-
 }
 
 
 
 
-//        binding = ActivityWeatherAcitvityBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//
-//        BottomNavigationView navView = findViewById(R.id.nav_view);
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_weather_acitvity);
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//        NavigationUI.setupWithNavController(binding.navView, navController);
-
-        // Create a new Fragment to be placed in the activity l
-//        ForecastFragment forecastFragment = new ForecastFragment();
-//        WeatherFragment weatherFragment = new WeatherFragment();
-        // Add the fragment to the 'container' FrameLayout
-
-//         Add the second fragment to the 'container' FrameLayout
-//        getSupportFragmentManager().beginTransaction()
-//                .add(R.id.container_weather, weatherFragment).commit();
-//        getSupportFragmentManager().beginTransaction().add(
-//                R.id.container_forecast, forecastFragment).commit();
-
-
-
-
-//    public WeatherActitvity() {
-//        super();
-//    }
-
-
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        Log.i("Weather","Start here");
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        super.onStart();
-//        Log.i("Weather","Stop here");
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        Log.i("Weather","Destroy here");
-//    }
 
